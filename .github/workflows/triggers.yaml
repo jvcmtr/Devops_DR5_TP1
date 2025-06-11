@@ -14,7 +14,6 @@ on:
 
 jobs:
   Java CI:
-    needs:
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
     with:
       run_tests: ${{ inputs.run_tests }}

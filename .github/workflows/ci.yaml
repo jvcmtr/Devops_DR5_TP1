@@ -9,6 +9,7 @@ on:
       - main
     paths:
         - 'devcalc/src/**'
+  workflow_dispatch:
 
 jobs:
   checkout:
@@ -77,5 +78,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     steps:
-      - name: Deploy realizado com sucesso
-        run: echo ""
+      - name: Simula deploy
+        run: echo "Deploy realizado com sucesso"

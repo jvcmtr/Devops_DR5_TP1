@@ -10,6 +10,16 @@ on:
     paths:
         - 'devcalc/src/**'
   workflow_dispatch:
+    run_tests:
+        description: 'Deseja executar testes?'
+        required: true
+        default: 'true'
+        type: boolean
+    run_lint:
+        description: 'Deseja executar lint?'
+        required: true
+        default: 'true'
+        type: boolean
 
 jobs:
   checkout:
@@ -40,6 +50,9 @@ jobs:
   lind-and-test:
     needs: [checkout, build]
     uses: "./github/workflow/lint-and-test.yaml"
+    with:
+      run_tests: ${{ inputs.run_tests }}
+      run_lint: ${{ inputs.run_lint }}
     
   package:
     name: Compile

@@ -2,10 +2,23 @@ name: Lint and Test
 
 on:
   workflow_call:
+    inputs:
+      run_tests:
+          description: 'Deseja executar testes?'
+          required: true
+          default: 'true'
+          type: boolean
+      run_lint:
+          description: 'Deseja executar lint?'
+          required: true
+          default: 'true'
+          type: boolean
+  
 
 jobs:
   # Tirado diretamente da documentação oficial ( https://github.com/marketplace/actions/run-java-checkstyle#example-usage ) 
   checkstyle_job:
+    if: ${{ inputs.run_lint }} 
     runs-on: ubuntu-latest
     name: Checkstyle job
     steps:
@@ -21,6 +34,7 @@ jobs:
 
   test:
     name: Test
+    if: ${{ inputs.run_tests }} 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

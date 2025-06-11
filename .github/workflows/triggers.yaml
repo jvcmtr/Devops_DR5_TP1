@@ -1,0 +1,20 @@
+name: triggers
+
+# Este arquivo tem como objetivo setar os valores default para CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+        - 'devcalc/src/**'
+
+  CI:
+    needs:
+    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
+    with:
+      run_tests: ${{ inputs.run_tests }}
+      run_lint: ${{ inputs.run_lint }}

@@ -49,6 +49,7 @@ jobs:
         run: mvn clean install -DskipTests
 
   lint-and-test:
+    if: ${{ inputs.run_tests == 'true' and inputs.run_lint == 'true' }}
     needs: [checkout, build]
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/lint-and-test.yaml@main
     with:

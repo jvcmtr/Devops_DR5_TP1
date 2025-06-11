@@ -9,6 +9,7 @@ on:
       - main
     paths:
         - 'devcalc/src/**'
+  workflow_dispatch:
 
 jobs:
   

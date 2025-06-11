@@ -1,0 +1,17 @@
+name: Self Hosted Test
+
+# Testa a funcionalidade de self-hosting
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-self-hosted:
+    runs-on: self-hosted
+    steps:
+      - name: Exibir informações do sistema
+        run: uname -a
+
+      - name: Mostrar versão do Java
+        run: java -version

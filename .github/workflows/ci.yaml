@@ -10,16 +10,17 @@ on:
     paths:
         - 'devcalc/src/**'
   workflow_dispatch:
-    run_tests:
-        description: 'Deseja executar testes?'
-        required: true
-        default: 'true'
-        type: boolean
-    run_lint:
-        description: 'Deseja executar lint?'
-        required: true
-        default: 'true'
-        type: boolean
+    inputs:
+      run_tests:
+          description: 'Deseja executar testes?'
+          required: true
+          default: 'true'
+          type: boolean
+      run_lint:
+          description: 'Deseja executar lint?'
+          required: true
+          default: 'true'
+          type: boolean
 
 jobs:
   checkout:

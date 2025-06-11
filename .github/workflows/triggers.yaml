@@ -12,7 +12,8 @@ on:
     paths:
         - 'devcalc/src/**'
 
-  CI:
+jobs:
+  Java CI:
     needs:
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
     with:

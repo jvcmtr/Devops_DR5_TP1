@@ -33,6 +33,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build com Maven
+        working-directory: devcalc 
         run: mvn clean install -DskipTests
 
   test:
@@ -50,4 +51,5 @@ jobs:
           distribution: 'temurin'
 
       - name: Executar testes com Maven
+        working-directory: devcalc 
         run: mvn test

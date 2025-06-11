@@ -1,6 +1,8 @@
 name: triggers
 
-# Este arquivo tem como objetivo setar os valores default para CI
+# Este arquivo tem como objetivo mapear os gatilhos
+# e passar os argumentos default para CI, diferenciando
+# o dispatch manual do uso dos gatilhos
 
 on:
   push:

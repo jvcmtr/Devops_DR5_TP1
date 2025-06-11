@@ -1,0 +1,37 @@
+name: Lint and Test
+
+on:
+  workflow_call:
+
+jobs:
+  # Tirado diretamente da documentação oficial ( https://github.com/marketplace/actions/run-java-checkstyle#example-usage ) 
+  checkstyle_job:
+    runs-on: ubuntu-latest
+    name: Checkstyle job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: 'github-pr-check'
+          tool_name: 'testtool'
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configurar Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Executar testes com Maven
+        working-directory: devcalc 
+        run: mvn test

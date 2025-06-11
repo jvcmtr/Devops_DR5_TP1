@@ -13,12 +13,12 @@ on:
     run_tests:
         description: 'Deseja executar testes?'
         required: true
-        default: 'true'
+        default: true
         type: boolean
     run_lint:
         description: 'Deseja executar lint?'
         required: true
-        default: 'true'
+        default: true
         type: boolean
 
 jobs:

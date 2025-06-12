@@ -20,3 +20,5 @@ jobs:
     with:
       run_tests: ${{ !contains(vars.TRUE_VALUES, vars.USE_TEST_ON_TRIGGER) }}
       run_lint: ${{ !contains(vars.TRUE_VALUES, vars.USE_LINT_ON_TRIGGER) }}
+    secrets:
+      DB_CONNECTION: ${{secrets.DB_CONNECTION}}

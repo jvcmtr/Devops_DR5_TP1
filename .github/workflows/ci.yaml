@@ -77,7 +77,7 @@ jobs:
     needs: [checkout]
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/connect.yaml@main
     with:
-      connection_string: ${{vars.DB_CONNECTION}}
+      connection_string: ${{secrets.DB_CONNECTION}}
 
   deploy:
     name: Deploy

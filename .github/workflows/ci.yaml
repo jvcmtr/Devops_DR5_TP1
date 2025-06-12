@@ -8,6 +8,8 @@ on:
     secrets:
       DB_CONNECTION:
         required: true
+      SERVICE_CONNECTION:
+        required: true
     inputs:
       run_tests:
           required: true
@@ -56,7 +58,7 @@ jobs:
 
   lint-and-test:
     needs: [checkout, build]
-    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/lint-and-test.yaml@main
+    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/lint-and-test.yaml@infra
     with:
       run_tests: ${{ inputs.run_tests }}
       run_lint: ${{ inputs.run_lint }}
@@ -81,7 +83,7 @@ jobs:
 
   connect_to_db:
     needs: [checkout]
-    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/connect.yaml@main
+    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/connect.yaml@infra
     secrets:
       connection_string: ${{secrets.DB_CONNECTION}}
 

@@ -11,19 +11,37 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
     paths:
         - 'devcalc/src/**'
 
+env:
+  name: ${{ github.ref == 'refs/heads/main' && 'PRD' || 'DEV' }}
 
 jobs:
 
-  CI:
+  CI MAIN:
+    if: ${{ contains(vars.TRUE_VALUES, vars.IS_PRODUCTION)}}
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
     with:
+      env_name: ${{env.name}}
+      run_tests: true
+      run_lint: ${{ contains(vars.TRUE_VALUES, vars.USE_LINT_ON_TRIGGER) }}
+    secrets:
+      DB_CONNECTION: ${{secrets.DB_CONNECTION}}
+      SERVICE_CONNECTION: ${{secrets.DB_CONNECTION}}
+
+  CI:
+    if: ${{ !contains(vars.TRUE_VALUES, vars.IS_PRODUCTION)}}
+    uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@dev
+    with:
+      env_name: ${{env.name}}
       run_tests: ${{ contains(vars.TRUE_VALUES, vars.USE_TEST_ON_TRIGGER) }}
       run_lint: ${{ contains(vars.TRUE_VALUES, vars.USE_LINT_ON_TRIGGER) }}
     secrets:
       DB_CONNECTION: ${{secrets.DB_CONNECTION}}
+      SERVICE_CONNECTION: ${{secrets.DB_CONNECTION}}

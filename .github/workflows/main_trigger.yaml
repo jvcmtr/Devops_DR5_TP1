@@ -1,4 +1,4 @@
-name: triggers
+name: main_trigger
 
 # Este arquivo tem como objetivo mapear os gatilhos
 # e passar os argumentos default para CI, diferenciando
@@ -18,5 +18,5 @@ jobs:
   CI:
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
     with:
-      run_tests: true
-      run_lint: true
+      run_tests: ${{vars.USE_TEST_ON_TRIGGER}}
+      run_lint: ${{vars.USE_LINT_ON_TRIGGER}}

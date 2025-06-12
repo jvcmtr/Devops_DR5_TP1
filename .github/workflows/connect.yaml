@@ -1,0 +1,22 @@
+name: Connect
+
+on:
+  workflow_call:
+    inputs:
+      connection_string:
+          required: true
+          type: boolean
+  
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail connection
+        if: ${{ inputs.connection_string == '' }}
+        run: echo "Fail to connect to the server"
+
+      - name: Succeed Connection
+        if: ${{ inputs.connection_string != '' }}
+        run: echo "successfully connected to the server"

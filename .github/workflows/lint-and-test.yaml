@@ -1,5 +1,8 @@
 name: Lint and Test
 
+permissions:
+  issues: write
+
 on:
   workflow_call:
     inputs:
@@ -9,7 +12,6 @@ on:
       run_lint:
           required: true
           type: boolean
-  
 
 jobs:
   # Tirado diretamente da documentação oficial ( https://github.com/marketplace/actions/run-java-checkstyle#example-usage ) 
@@ -43,5 +45,20 @@ jobs:
           distribution: 'temurin'
 
       - name: Executar testes com Maven
+        id: test-result
         working-directory: devcalc 
         run: mvn test
+        continue-on-error: true
+      
+      - name: Criar issue
+        if: steps.test-result.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: "Falha no teste",
+                  body: `Resultado do teste: https://github.com/jvcmtr/Devops_DR5_TP1/actions/runs/${{ github.run_id }}`
+                });

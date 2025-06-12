@@ -3,6 +3,8 @@ package com.devcalc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import com.devcalc.CalculatorService.CalculatorService;
 import com.devcalc.CalculatorService.Operations.IntegerOperations;
@@ -15,6 +17,11 @@ import net.jqwik.api.Provide;
 
 
 public class CalculatorServiceTest {
+    
+    @Test
+    void FalhaProposital() {
+        assertTrue(false);
+    }
 
     @Property
     void testIntegerAddition(@ForAll("integers") int a, @ForAll("integers") int b) {

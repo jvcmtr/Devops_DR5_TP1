@@ -4,6 +4,9 @@ name: main_trigger
 # e passar os argumentos default para CI, diferenciando
 # o dispatch manual do uso dos gatilhos
 
+permissions:
+  issues: write
+
 on:
   push:
     branches:
@@ -14,7 +17,9 @@ on:
     paths:
         - 'devcalc/src/**'
 
+
 jobs:
+
   CI:
     uses: jvcmtr/Devops_DR5_TP1/.github/workflows/ci.yaml@main
     with:
@@ -22,3 +27,4 @@ jobs:
       run_lint: ${{ contains(vars.TRUE_VALUES, vars.USE_LINT_ON_TRIGGER) }}
     secrets:
       DB_CONNECTION: ${{secrets.DB_CONNECTION}}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

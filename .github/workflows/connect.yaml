@@ -13,10 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Connection
-        run: echo "${{secrets.connection_string}}"
-
-      - name validate_secret:
+      - name: validate_secret
         run: |
           if [ -z "${{ secrets.connection_string }}" ]; then
             exit 1

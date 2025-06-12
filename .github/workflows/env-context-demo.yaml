@@ -1,0 +1,43 @@
+name: Env Context Demo
+
+on: workflow_dispatch
+
+env:
+  STAGE: test
+  WORKFLOW_VAR: variavel declarada no workflow 
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+
+    env:
+      JOB_VAR: variavel declarada no job
+
+    steps:
+      - name: Exibicao de variaveis
+        env:
+            STEP_VAR: variavel declarada no step
+        run: |
+          echo "github.actor: ${{ github.actor }}"
+          echo "runner.os: ${{ runner.os }}"
+          echo "STAGE: $STAGE"
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+          echo "JOB_VAR: $JOB_VAR"
+          echo "SETP_VAR: $SETP_VAR"
+
+      - name: Outro step
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+          echo "JOB_VAR: $JOB_VAR"
+          echo "SETP_VAR: $SETP_VAR"
+
+  job_2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Outro job
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"
+          echo "JOB_VAR: $JOB_VAR"
+          echo "SETP_VAR: $SETP_VAR"
+
+  

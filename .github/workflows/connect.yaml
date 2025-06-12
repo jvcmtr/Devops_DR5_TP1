@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Connection
-        run: echo secrets.connection_string 
+        run: echo "${{secrets.connection_string"}}"
 
     steps:
       - name: Fail connection

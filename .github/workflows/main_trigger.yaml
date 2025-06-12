@@ -27,4 +27,3 @@ jobs:
       run_lint: ${{ contains(vars.TRUE_VALUES, vars.USE_LINT_ON_TRIGGER) }}
     secrets:
       DB_CONNECTION: ${{secrets.DB_CONNECTION}}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

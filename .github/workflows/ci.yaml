@@ -2,6 +2,9 @@ name: Java CI
 
 on:
   workflow_call:
+    secrets:
+      DB_CONNECTION:
+        required: true
     inputs:
       run_tests:
           required: true

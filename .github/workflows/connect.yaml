@@ -11,11 +11,11 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
     steps:
       - name: Connection
         run: echo "${{secrets.connection_string"}}"
-
-    steps:
+        
       - name: Fail connection
         if: ${{ secrets.connection_string == '' }}
         run: echo "Fail to connect to the server"

@@ -16,10 +16,10 @@ jobs:
       - name: Connection
         run: echo "${{secrets.connection_string}}"
 
-      - name: Fail connection
-        if: ${{ secrets.connection_string == '' }}
-        run: echo "Fail to connect to the server"
-
-      - name: Succeed Connection
-        if: ${{ secrets.connection_string != '' }}
-        run: echo "successfully connected to the server"
+      - name validate_secret:
+        run: |
+          if [ -z "${{ secrets.connection_string }}" ]; then
+            exit 1
+          else
+            echo "successfully connected to the server"
+          fi

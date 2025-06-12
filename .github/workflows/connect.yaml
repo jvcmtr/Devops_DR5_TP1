@@ -14,8 +14,8 @@ jobs:
 
     steps:
       - name: Connection
-        run: echo "${{secrets.connection_string"}}"
-        
+        run: echo "${{secrets.connection_string}}"
+
       - name: Fail connection
         if: ${{ secrets.connection_string == '' }}
         run: echo "Fail to connect to the server"
